@@ -11,7 +11,7 @@ import SwiftUI
 struct CouchCoderApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ProjectListView()
         }
     }
 }

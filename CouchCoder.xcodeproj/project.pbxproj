@@ -6,6 +6,11 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		CBEE295A2ECA3E50004830EF /* SwiftSH in Frameworks */ = {isa = PBXBuildFile; productRef = CBEE29592ECA3E50004830EF /* SwiftSH */; };
+		CBEE2A482ECAB843004830EF /* SwiftTerm in Frameworks */ = {isa = PBXBuildFile; productRef = CBEE2A472ECAB843004830EF /* SwiftTerm */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		CBEE29102ECA38E7004830EF /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -52,6 +57,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CBEE2A482ECAB843004830EF /* SwiftTerm in Frameworks */,
+				CBEE295A2ECA3E50004830EF /* SwiftSH in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -112,6 +119,8 @@
 			);
 			name = CouchCoder;
 			packageProductDependencies = (
+				CBEE29592ECA3E50004830EF /* SwiftSH */,
+				CBEE2A472ECAB843004830EF /* SwiftTerm */,
 			);
 			productName = CouchCoder;
 			productReference = CBEE29022ECA38E6004830EF /* CouchCoder.app */;
@@ -195,6 +204,10 @@
 			);
 			mainGroup = CBEE28F92ECA38E6004830EF;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				CBEE29582ECA3E50004830EF /* XCLocalSwiftPackageReference "Vendor/SwiftSH" */,
+				CBEE2A462ECAB843004830EF /* XCRemoteSwiftPackageReference "SwiftTerm" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = CBEE29032ECA38E6004830EF /* Products */;
 			projectDirPath = "";
@@ -395,11 +408,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 32LGBT83RQ;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSBonjourServices = _ssh._tcp;
+				INFOPLIST_KEY_NSLocalNetworkUsageDescription = "CouchCoder needs LAN access to reach your Mac over SSH.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -412,6 +428,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "Chase-Kunz.CouchCoder";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
 				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
@@ -427,11 +444,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 32LGBT83RQ;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSBonjourServices = _ssh._tcp;
+				INFOPLIST_KEY_NSLocalNetworkUsageDescription = "CouchCoder needs LAN access to reach your Mac over SSH.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -444,6 +464,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "Chase-Kunz.CouchCoder";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
 				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
@@ -578,6 +599,37 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCLocalSwiftPackageReference section */
+		CBEE29582ECA3E50004830EF /* XCLocalSwiftPackageReference "Vendor/SwiftSH" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = Vendor/SwiftSH;
+		};
+/* End XCLocalSwiftPackageReference section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		CBEE2A462ECAB843004830EF /* XCRemoteSwiftPackageReference "SwiftTerm" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/migueldeicaza/SwiftTerm";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.5.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		CBEE29592ECA3E50004830EF /* SwiftSH */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CBEE29582ECA3E50004830EF /* XCLocalSwiftPackageReference "Vendor/SwiftSH" */;
+			productName = SwiftSH;
+		};
+		CBEE2A472ECAB843004830EF /* SwiftTerm */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CBEE2A462ECAB843004830EF /* XCRemoteSwiftPackageReference "SwiftTerm" */;
+			productName = SwiftTerm;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = CBEE28FA2ECA38E6004830EF /* Project object */;
 }

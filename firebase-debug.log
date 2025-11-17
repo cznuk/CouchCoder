@@ -1,0 +1,69 @@
+[debug] [2025-11-16T18:18:33.506Z] Checked if tokens are valid: false, expires at: 1763315615406
+[debug] [2025-11-16T18:18:33.508Z] Checked if tokens are valid: false, expires at: 1763315615406
+[debug] [2025-11-16T18:18:33.508Z] > refreshing access token with scopes: []
+[debug] [2025-11-16T18:18:33.508Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2025-11-16T18:18:33.508Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-11-16T18:18:33.509Z] Checked if tokens are valid: false, expires at: 1763315615406
+[debug] [2025-11-16T18:18:33.509Z] Checked if tokens are valid: false, expires at: 1763315615406
+[debug] [2025-11-16T18:18:33.509Z] > refreshing access token with scopes: []
+[debug] [2025-11-16T18:18:33.510Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2025-11-16T18:18:33.510Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-11-16T18:18:33.510Z] Checked if tokens are valid: false, expires at: 1763315615406
+[debug] [2025-11-16T18:18:33.510Z] Checked if tokens are valid: false, expires at: 1763315615406
+[debug] [2025-11-16T18:18:33.510Z] > refreshing access token with scopes: []
+[debug] [2025-11-16T18:18:33.510Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2025-11-16T18:18:33.510Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-11-16T18:18:33.511Z] Checked if tokens are valid: false, expires at: 1763315615406
+[debug] [2025-11-16T18:18:33.511Z] Checked if tokens are valid: false, expires at: 1763315615406
+[debug] [2025-11-16T18:18:33.511Z] > refreshing access token with scopes: []
+[debug] [2025-11-16T18:18:33.511Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2025-11-16T18:18:33.511Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-11-16T18:18:33.511Z] Checked if tokens are valid: false, expires at: 1763315615406
+[debug] [2025-11-16T18:18:33.511Z] Checked if tokens are valid: false, expires at: 1763315615406
+[debug] [2025-11-16T18:18:33.511Z] > refreshing access token with scopes: []
+[debug] [2025-11-16T18:18:33.511Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2025-11-16T18:18:33.511Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-11-16T18:18:33.512Z] Checked if tokens are valid: false, expires at: 1763315615406
+[debug] [2025-11-16T18:18:33.512Z] Checked if tokens are valid: false, expires at: 1763315615406
+[debug] [2025-11-16T18:18:33.512Z] > refreshing access token with scopes: []
+[debug] [2025-11-16T18:18:33.512Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2025-11-16T18:18:33.512Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-11-16T18:18:33.616Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200
+[debug] [2025-11-16T18:18:33.616Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-11-16T18:18:33.635Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/kunzaria-20118/services/ [none]
+[debug] [2025-11-16T18:18:33.635Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/kunzaria-20118/services/ x-goog-quota-user=projects/kunzaria-20118
+[debug] [2025-11-16T18:18:33.637Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200
+[debug] [2025-11-16T18:18:33.637Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-11-16T18:18:33.649Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/kunzaria-20118/services/firestore.googleapis.com [none]
+[debug] [2025-11-16T18:18:33.650Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/kunzaria-20118/services/firestore.googleapis.com x-goog-quota-user=projects/kunzaria-20118
+[debug] [2025-11-16T18:18:33.651Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200
+[debug] [2025-11-16T18:18:33.651Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-11-16T18:18:33.661Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/kunzaria-20118/services/firebaseio.com [none]
+[debug] [2025-11-16T18:18:33.661Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/kunzaria-20118/services/firebaseio.com x-goog-quota-user=projects/kunzaria-20118
+[debug] [2025-11-16T18:18:33.662Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200
+[debug] [2025-11-16T18:18:33.662Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-11-16T18:18:33.672Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/kunzaria-20118/services/firebaseapphosting.googleapis.com [none]
+[debug] [2025-11-16T18:18:33.672Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/kunzaria-20118/services/firebaseapphosting.googleapis.com x-goog-quota-user=projects/kunzaria-20118
+[debug] [2025-11-16T18:18:33.673Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200
+[debug] [2025-11-16T18:18:33.673Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-11-16T18:18:33.685Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/kunzaria-20118/services/firebasedataconnect.googleapis.com [none]
+[debug] [2025-11-16T18:18:33.685Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/kunzaria-20118/services/firebasedataconnect.googleapis.com x-goog-quota-user=projects/kunzaria-20118
+[debug] [2025-11-16T18:18:33.686Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200
+[debug] [2025-11-16T18:18:33.686Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-11-16T18:18:33.696Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/kunzaria-20118/services/firebasecrashlytics.googleapis.com [none]
+[debug] [2025-11-16T18:18:33.696Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/kunzaria-20118/services/firebasecrashlytics.googleapis.com x-goog-quota-user=projects/kunzaria-20118
+[debug] [2025-11-16T18:18:34.026Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/kunzaria-20118/services/firebaseio.com 403
+[debug] [2025-11-16T18:18:34.027Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/kunzaria-20118/services/firebaseio.com [omitted]
+[debug] [2025-11-16T18:18:34.127Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/kunzaria-20118/services/ 403
+[debug] [2025-11-16T18:18:34.127Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/kunzaria-20118/services/ [omitted]
+[debug] [2025-11-16T18:18:34.128Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/kunzaria-20118/services/firebaseapphosting.googleapis.com 403
+[debug] [2025-11-16T18:18:34.128Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/kunzaria-20118/services/firebaseapphosting.googleapis.com [omitted]
+[debug] [2025-11-16T18:18:34.128Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/kunzaria-20118/services/firebasedataconnect.googleapis.com 403
+[debug] [2025-11-16T18:18:34.128Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/kunzaria-20118/services/firebasedataconnect.googleapis.com [omitted]
+[debug] [2025-11-16T18:18:34.128Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/kunzaria-20118/services/firebasecrashlytics.googleapis.com 403
+[debug] [2025-11-16T18:18:34.128Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/kunzaria-20118/services/firebasecrashlytics.googleapis.com [omitted]
+[debug] [2025-11-16T18:18:34.129Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/kunzaria-20118/services/firestore.googleapis.com 403
+[debug] [2025-11-16T18:18:34.129Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/kunzaria-20118/services/firestore.googleapis.com [omitted]
+[debug] [2025-11-16T18:18:34.130Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2025-11-16T18:18:34.130Z] > authorizing via FIREBASE_TOKEN environment variable
+[warn] ⚠  Authenticating with `FIREBASE_TOKEN` is deprecated and will be removed in a future major version of `firebase-tools`. Instead, use a service account key with `GOOGLE_APPLICATION_CREDENTIALS`: https://cloud.google.com/docs/authentication/getting-started 
