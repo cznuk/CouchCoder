@@ -403,12 +403,14 @@ private struct ProjectSearchHeader: View {
             .layoutPriority(1)
 
             Button(action: onNewProject) {
-                Label("New Project", systemImage: "plus")
-                    .font(.subheadline.weight(.semibold))
-                    .lineLimit(1)
+                Image(systemName: "plus")
+                    .font(.system(size: 16, weight: .bold))
+                    .frame(width: 36, height: 36)
+                    .accessibilityLabel("New Project")
             }
             .buttonStyle(.borderedProminent)
-            .controlSize(.large)
+            .buttonBorderShape(.circle)
+            .controlSize(.mini)
         }
         .padding(.horizontal)
         .padding(.top, 8)

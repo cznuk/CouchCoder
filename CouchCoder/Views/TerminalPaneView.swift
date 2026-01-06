@@ -139,6 +139,7 @@ struct TerminalPaneView: UIViewRepresentable {
         let container = TerminalScrollContainerView()
         let term = container.terminalView
         term.terminalDelegate = bridge
+        term.allowMouseReporting = false
         
         // Configure terminal appearance
         configureAppearance(term, container: container, colorScheme: colorScheme)
@@ -230,6 +231,7 @@ private final class CouchCoderTerminalAccessory: UIView {
     private weak var terminalView: TerminalView?
     private weak var pasteButton: UIButton?
     private weak var ctrlCButton: UIButton?
+    private weak var copyButton: UIButton?
     
     init(frame: CGRect, inputViewStyle: UIInputView.Style, container: TerminalView) {
         super.init(frame: frame)
@@ -275,6 +277,11 @@ private final class CouchCoderTerminalAccessory: UIView {
         let pasteBtn = createButton(title: "Paste", image: UIImage(systemName: "doc.on.clipboard"), action: #selector(handlePaste))
         pasteButton = pasteBtn
         stackView.addArrangedSubview(pasteBtn)
+        
+        // Copy button
+        let copyBtn = createButton(title: "Copy", image: UIImage(systemName: "doc.on.doc"), action: #selector(handleCopy))
+        copyButton = copyBtn
+        stackView.addArrangedSubview(copyBtn)
         
         // Ctrl+C button
         let ctrlCBtn = createButton(title: "Ctrl+C", image: UIImage(systemName: "xmark.seal"), action: #selector(handleCtrlC))
@@ -349,6 +356,14 @@ private final class CouchCoderTerminalAccessory: UIView {
     
     @objc private func handlePaste() {
         terminalView?.paste(nil)
+    }
+    
+    @objc private func handleCopy() {
+        guard let terminalView else { return }
+        if !terminalView.isFirstResponder {
+            terminalView.becomeFirstResponder()
+        }
+        terminalView.copy(nil)
     }
     
     @objc private func handleCtrlC() {

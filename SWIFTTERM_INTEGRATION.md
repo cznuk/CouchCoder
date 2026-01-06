@@ -98,3 +98,4 @@ This integration adds a proper terminal emulator (SwiftTerm) to display Codex TU
 - Terminal session persistence across app restarts
 
 
+

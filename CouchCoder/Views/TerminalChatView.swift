@@ -18,11 +18,6 @@ struct TerminalChatView: View {
         VStack(spacing: 0) {
             // Full-screen terminal
             TerminalPaneView(bridge: viewModel.terminalBridge)
-            
-            // Build error copy button
-            if viewModel.hasBuildError {
-                buildErrorButton
-            }
         }
         .navigationTitle(viewModel.project.name)
         .toolbarTitleDisplayMode(.inlineLarge)
@@ -51,18 +46,31 @@ struct TerminalChatView: View {
                 ConnectionBadge(state: viewModel.state)
             }
         }
-        .safeAreaInset(edge: .bottom) {
-            if viewModel.hasBuildError {
-                buildErrorButton
-                    .padding()
-                    .background(.ultraThinMaterial)
-            }
+        .overlay(alignment: .bottom) {
+            bottomActionOverlay
         }
         .onAppear {
             viewModel.start()
         }
     }
-    
+
+    @ViewBuilder
+    private var bottomActionOverlay: some View {
+        if viewModel.hasBuildError || viewModel.pendingURLString != nil {
+            VStack(spacing: 12) {
+                if let urlString = viewModel.pendingURLString {
+                    urlBanner(for: urlString)
+                }
+                if viewModel.hasBuildError {
+                    buildErrorButton
+                }
+            }
+            .frame(maxWidth: .infinity)
+            .padding(.horizontal, 16)
+            .padding(.bottom, 16)
+        }
+    }
+
     private var buildErrorButton: some View {
         Button {
             viewModel.copyBuildErrors()
@@ -79,6 +87,56 @@ struct TerminalChatView: View {
             .cornerRadius(8)
         }
         .buttonStyle(.plain)
+    }
+
+    private func urlBanner(for urlString: String) -> some View {
+        VStack(alignment: .leading, spacing: 8) {
+            HStack {
+                Label("Detected URL", systemImage: "link")
+                    .font(.footnote.weight(.semibold))
+                Spacer()
+                Button {
+                    viewModel.dismissDetectedURLBanner()
+                } label: {
+                    Image(systemName: "xmark")
+                        .font(.system(size: 12, weight: .bold))
+                        .padding(6)
+                        .background(Color.black.opacity(0.15))
+                        .clipShape(Circle())
+                }
+                .buttonStyle(.plain)
+            }
+
+            Text(urlString)
+                .font(.caption.monospaced())
+                .lineLimit(2)
+                .textSelection(.enabled)
+
+            HStack(spacing: 8) {
+                Button {
+                    viewModel.copyDetectedURL()
+                } label: {
+                    Label("Copy", systemImage: "doc.on.doc")
+                        .font(.footnote.weight(.semibold))
+                        .labelStyle(.titleAndIcon)
+                        .frame(maxWidth: .infinity)
+                }
+                .buttonStyle(.borderedProminent)
+
+                Button {
+                    viewModel.openDetectedURL()
+                } label: {
+                    Label("Open", systemImage: "safari")
+                        .font(.footnote.weight(.semibold))
+                        .labelStyle(.titleAndIcon)
+                        .frame(maxWidth: .infinity)
+                }
+                .buttonStyle(.bordered)
+            }
+        }
+        .padding(12)
+        .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 12))
+        .shadow(radius: 6, y: 2)
     }
 
 }

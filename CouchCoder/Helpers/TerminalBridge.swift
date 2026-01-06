@@ -69,7 +69,26 @@ final class TerminalBridge: NSObject, TerminalViewDelegate {
     }
     
     func requestOpenLink(source: TerminalView, link: String, params: [String: String]) {
-        // Optional: handle link clicks
+        let trimmed = link.trimmingCharacters(in: .whitespacesAndNewlines)
+        guard !trimmed.isEmpty else { return }
+        
+        func normalizedURL(from text: String) -> URL? {
+            if let url = URL(string: text), url.scheme != nil {
+                return url
+            }
+            if let httpsURL = URL(string: "https://\(text)") {
+                return httpsURL
+            }
+            return nil
+        }
+        
+        guard let url = normalizedURL(from: trimmed) else {
+            UIPasteboard.general.string = trimmed
+            return
+        }
+        
+        UIPasteboard.general.url = url
+        UIApplication.shared.open(url, options: [:], completionHandler: nil)
     }
     
     func clipboardCopy(source: TerminalView, content: Data) {

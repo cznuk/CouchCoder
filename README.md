@@ -7,8 +7,9 @@ CouchCoder is a personal SwiftUI iOS app that turns the Messages UI into a comfy
 ## iOS App Highlights
 
 - Built for iOS 26 using SwiftUI
-- Uses a vendored build of [SwiftSH](https://github.com/migueldeicaza/SwiftSH) to keep per-project SSH shells alive.
-- Project list mimics Messages conversations (last preview) with swipe-to-hide and pin feature and an “eye” toggle for hidden repos.
+- Uses [SwiftTerm](https://github.com/migueldeicaza/SwiftTerm) for full terminal emulation with ANSI escape code support
+- Uses a vendored build of [SwiftSH](https://github.com/migueldeicaza/SwiftSH) to keep per-project SSH shells alive
+- Project list mimics Messages conversations (last preview) with swipe-to-hide and pin feature and an "eye" toggle for hidden repos
 - Shortcut bar buttons:
   - `Git Sync`: `git add . && git commit -m "couch vibes" && git push`
   - `Build & Install`: runs `xcodebuild -scheme <your scheme> -destination 'platform=iOS,id=<your-device-udid>' build install`
@@ -101,6 +102,11 @@ cat ~/.ssh/id_ed25519.pub >> ~/.ssh/authorized_keys
 2. Update `CouchCoder/Config/.env` (or add `.env.local`) with your SSH + device details.
 3. Select your personal device target (iOS 26 min deployment).
 4. Build & run. You should see your projects, tap one to open the chat-style shell, and vibe away.
+
+## Dependencies
+
+- **[SwiftTerm](https://github.com/migueldeicaza/SwiftTerm)** - Open-source terminal emulator library for rendering terminal output with full ANSI escape code support. Handles all terminal rendering, input, and escape sequences natively.
+- **[SwiftSH](https://github.com/migueldeicaza/SwiftSH)** - SSH connection library (vendored in `Vendor/SwiftSH/`) for maintaining persistent SSH shells per project.
 
 ## Notes & Next Ideas
 

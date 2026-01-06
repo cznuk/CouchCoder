@@ -15,6 +15,7 @@ final class TerminalSessionViewModel: ObservableObject {
     @Published private(set) var state: SSHConnection.State = .idle
     @Published private(set) var buildErrorText: String? = nil
     @Published private(set) var hasBuildError: Bool = false
+    @Published private(set) var pendingURLString: String? = nil
 
     let project: Project
     let terminalBridge: TerminalBridge
@@ -22,7 +23,13 @@ final class TerminalSessionViewModel: ObservableObject {
     private let connection: SSHConnection
     private var cancellables = Set<AnyCancellable>()
     private var buildErrorDetectionTask: Task<Void, Never>?
-    
+    private var urlDismissTask: Task<Void, Never>?
+    private var lastDetectedURLString: String?
+    private static let urlDetectionRegex = try? NSRegularExpression(
+        pattern: #"https?:\/\/[^\s]+"#,
+        options: [.caseInsensitive]
+    )
+
     #if DEBUG
     private func log(_ message: String) {
         print("[Session:\(project.name)] \(message)")
@@ -362,16 +369,22 @@ final class TerminalSessionViewModel: ObservableObject {
     
     private func checkForBuildErrors(in data: Data) {
         guard let text = String(data: data, encoding: .utf8) else { return }
-        
-        // Check for build failure indicators
-        let buildFailedPatterns = [
-            "BUILD FAILED",
-            "error:",
+
+        // Look for shareable URLs in the output before mutating state
+        detectURLs(in: text)
+
+        // Check for build failure indicators that only appear when xcodebuild fails
+        let buildFailedIndicators = [
             "** BUILD FAILED **",
-            "The following build commands failed:"
+            "BUILD FAILED",
+            "The following build commands failed:",
+            "Command CodeSign failed",
+            "Command CompileSwift failed",
+            "Command PhaseScriptExecution failed",
+            "encountered an error (code 65)"
         ]
-        
-        let hasBuildFailure = buildFailedPatterns.contains { pattern in
+
+        let hasBuildFailure = buildFailedIndicators.contains { pattern in
             text.range(of: pattern, options: .caseInsensitive) != nil
         }
         
@@ -385,8 +398,14 @@ final class TerminalSessionViewModel: ObservableObject {
             
             // Append error-related lines
             let lines = text.components(separatedBy: .newlines)
+            let errorLineIndicators = [
+                "error:",
+                "warning:",
+                "BUILD FAILED",
+                "The following build commands failed:"
+            ]
             let errorLines = lines.filter { line in
-                buildFailedPatterns.contains { pattern in
+                errorLineIndicators.contains { pattern in
                     line.range(of: pattern, options: .caseInsensitive) != nil
                 }
             }
@@ -411,6 +430,68 @@ final class TerminalSessionViewModel: ObservableObject {
             buildErrorText = nil
             buildErrorDetectionTask?.cancel()
         }
+    }
+
+    private func detectURLs(in text: String) {
+        guard let regex = Self.urlDetectionRegex else { return }
+        let range = NSRange(text.startIndex..<text.endIndex, in: text)
+        let matches = regex.matches(in: text, options: [], range: range)
+        guard !matches.isEmpty else { return }
+
+        for match in matches {
+            guard let range = Range(match.range, in: text) else { continue }
+            let rawURL = String(text[range])
+            guard let sanitizedURL = sanitizeURLString(rawURL) else { continue }
+
+            guard sanitizedURL != lastDetectedURLString else { continue }
+            lastDetectedURLString = sanitizedURL
+            pendingURLString = sanitizedURL
+            scheduleURLDismissal()
+        }
+    }
+
+    private func sanitizeURLString(_ rawValue: String) -> String? {
+        var trimmed = rawValue.trimmingCharacters(in: .whitespacesAndNewlines)
+        let trailingCharacters = CharacterSet(charactersIn: ".,)>]}\"'")
+        trimmed = trimmed.trimmingCharacters(in: trailingCharacters)
+        guard let url = URL(string: trimmed),
+              let scheme = url.scheme?.lowercased(),
+              scheme == "http" || scheme == "https" else {
+            return nil
+        }
+        return url.absoluteString
+    }
+
+    private func scheduleURLDismissal() {
+        urlDismissTask?.cancel()
+        urlDismissTask = Task { [weak self] in
+            try? await Task.sleep(nanoseconds: 45_000_000_000) // 45 seconds
+            guard !Task.isCancelled else { return }
+            await MainActor.run {
+                self?.pendingURLString = nil
+                self?.lastDetectedURLString = nil
+                self?.urlDismissTask = nil
+            }
+        }
+    }
+
+    func dismissDetectedURLBanner() {
+        urlDismissTask?.cancel()
+        urlDismissTask = nil
+        pendingURLString = nil
+        lastDetectedURLString = nil
+    }
+
+    func copyDetectedURL() {
+        guard let url = pendingURLString else { return }
+        UIPasteboard.general.string = url
+        log("✅ Copied detected URL to clipboard")
+    }
+
+    func openDetectedURL() {
+        guard let urlString = pendingURLString, let url = URL(string: urlString) else { return }
+        UIApplication.shared.open(url)
+        log("🌐 Opening detected URL: \(urlString)")
     }
     
     private func extractBuildErrors() async {

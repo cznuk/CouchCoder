@@ -107,3 +107,4 @@ Simplified the app to provide a direct terminal experience with Codex running im
 - `TerminalBridge.swift` - Bridge logic remains the same
 - `SSHManager.swift` - SSH connection logic preserved
 - `TranscriptItem.swift` - Not used but kept for future use
+

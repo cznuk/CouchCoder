@@ -54,3 +54,4 @@ enum ProjectAccentColor: String, Codable, CaseIterable {
         return nextIndex < all.endIndex ? all[nextIndex] : all.first ?? .sky
     }
 }
+
